@@ -4,17 +4,19 @@ import airForce from "../assets/airforce.png";
 
 export default function PhysicalFitness() {
   const [formData, setFormData] = useState({
-    svcNo: "NAF",
+    svcNo: "NAF ",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name === "svcNo") {
-      // Always keep "NAF" prefix
-      if (!value.startsWith("NAF ")) return;
+      const cleanedValue = value.replace(/\s/g, '').replace(/[^a-zA-Z0-9]/g, '');
+      if (cleanedValue.startsWith("NAF")) {
+        return setFormData({ ...formData, svcNo: cleanedValue });
+      } else {
+        return setFormData({ ...formData, svcNo: `NAF${cleanedValue}` });
+      }
     }
-
     setFormData({ ...formData, [name]: value });
   };
 
@@ -36,7 +38,6 @@ export default function PhysicalFitness() {
     "Corporal",
     "Lance Corporal",
   ];
-
   const units = ["Armament", "Bursary", "Flight Line", "Logistics", "Medical"];
   const appointments = ["Commandant", "AOC", "RM", "Instructor"];
 
@@ -47,175 +48,117 @@ export default function PhysicalFitness() {
           <img src={airForce} alt="NAF Logo" />
           <h1>NIGERIA AIR FORCE ANNUAL PHYSICAL FITNESS REQUEST FORM</h1>
         </div>
-
         <form onSubmit={handleSubmit} className="form-grid">
-          <input
-            name="year"
-            type="number"
-            placeholder="Year"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="fullName"
-            type="text"
-            placeholder="Full Name"
-            onChange={handleChange}
-            required
-          />
-
-          <select name="rank" onChange={handleChange} required>
-            <option value="">Select Rank</option>
-            {ranks.map((r) => (
-              <option key={r}>{r}</option>
-            ))}
-          </select>
-
-          {/* Service Number with NAF prefix */}
-          <input
-            name="svcNo"
-            type="text"
-            value={formData.svcNo}
-            onChange={handleChange}
-            placeholder="NAF 12345"
-            required
-          />
-
-          <select name="unit" onChange={handleChange} required>
-            <option value="">Select Unit</option>
-            {units.map((u) => (
-              <option key={u}>{u}</option>
-            ))}
-          </select>
-
-          <input type="date" name="date" onChange={handleChange} required />
-
-          <select name="appointment" onChange={handleChange} required>
-            <option value="">Select Appointment</option>
-            {appointments.map((a) => (
-              <option key={a}>{a}</option>
-            ))}
-          </select>
-
-          <input
-            name="height"
-            type="number"
-            step="0.1"
-            placeholder="Height (m)"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="weight"
-            type="number"
-            step="0.1"
-            placeholder="Weight (kg)"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="phone"
-            type="tel"
-            placeholder="Phone Number"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="email"
-            type="email"
-            placeholder="Email"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="age"
-            type="number"
-            placeholder="Age"
-            onChange={handleChange}
-            required
-          />
-
-          <select name="sex" onChange={handleChange} required>
-            <option value="">Sex</option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
-
-          <select name="cardioType" onChange={handleChange} required>
-            <option value="">Cardio Type</option>
-            <option>Walk</option>
-            <option>Jog</option>
-          </select>
-
-          <input
-            name="cardioMinutes"
-            type="number"
-            placeholder="Cardio Minutes"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="cardioSeconds"
-            type="number"
-            placeholder="Cardio Seconds"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="stepUp"
-            type="number"
-            placeholder="3 Minutes Step-Up"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="pushUp"
-            type="number"
-            placeholder="1 Minute Push-Up"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="sitUp"
-            type="number"
-            placeholder="Sit-Up"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="chinUp"
-            type="number"
-            placeholder="Chin-Up"
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            name="sitReach"
-            type="number"
-            placeholder="Sit and Reach(cm)"
-            onChange={handleChange}
-            required
-          />
-
-          <button type="submit" className="submit-btn">
-            Submit Form
-          </button>
+          <div>
+            <label>Year:</label>
+            <input name="year" type="number" placeholder="Year" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Full Name:</label>
+            <input name="fullName" type="text" placeholder="Full Name" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Rank:</label>
+            <select name="rank" onChange={handleChange} required>
+              <option value="">Select Rank</option>
+              {ranks.map((r) => (
+                <option key={r}>{r}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>Service Number:</label>
+            <input name="svcNo" type="text" value={formData.svcNo} onChange={handleChange} placeholder="NAF123abc" required />
+          </div>
+          <div>
+            <label>Unit:</label>
+            <select name="unit" onChange={handleChange} required>
+              <option value="">Select Unit</option>
+              {units.map((u) => (
+                <option key={u}>{u}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>Date:</label>
+            <input type="date" name="date" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Appointment:</label>
+            <select name="appointment" onChange={handleChange} required>
+              <option value="">Select Appointment</option>
+              {appointments.map((a) => (
+                <option key={a}>{a}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label>Height (m):</label>
+            <input name="height" type="number" step="0.1" placeholder="Height (m)" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Weight (kg):</label>
+            <input name="weight" type="number" step="0.1" placeholder="Weight (kg)" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Phone Number:</label>
+            <input name="phone" type="tel" placeholder="Phone Number" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Age:</label>
+            <input name="age" type="number" placeholder="Age" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Sex:</label>
+            <select name="sex" onChange={handleChange} required>
+              <option value="">Sex</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <div>
+            <label>Cardio Type:</label>
+            <select name="cardioType" onChange={handleChange} required>
+              <option value="">Cardio Type</option>
+              <option>Walk</option>
+              <option>Jog</option>
+            </select>
+          </div>
+          <div>
+            <label>Cardio Minutes:</label>
+            <input name="cardioMinutes" type="number" placeholder="Cardio Minutes" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Cardio Seconds:</label>
+            <input name="cardioSeconds" type="number" placeholder="Cardio Seconds" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>3 Minutes Step-Up:</label>
+            <input name="stepUp" type="number" placeholder="3 Minutes Step-Up" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>1 Minute Push-Up:</label>
+            <input name="pushUp" type="number" placeholder="1 Minute Push-Up" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Sit-Up:</label>
+            <input name="sitUp" type="number" placeholder="Sit-Up" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Chin-Up:</label>
+            <input name="chinUp" type="number" placeholder="Chin-Up" onChange={handleChange} required />
+          </div>
+          <div>
+            <label>Sit and Reach (cm):</label>
+            <input name="sitReach" type="number" placeholder="Sit and Reach(cm)" onChange={handleChange} required />
+          </div>
+          <button type="submit" className="submit-btn"> Submit Form </button>
         </form>
-
-        <p style={{ textAlign: "center" }}>
-          © {new Date().getFullYear()} Nigeria Air Force – Official Use Only
-        </p>
+        <p style={{ textAlign: "center" }}> &copy; {new Date().getFullYear()} Nigeria Air Force – Official Use Only </p>
       </div>
     </div>
   );

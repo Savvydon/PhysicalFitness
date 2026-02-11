@@ -21,7 +21,7 @@
   margin-bottom: 2rem;
 }
 
-.logo {
+.header img {
   height: 80px;
   margin-bottom: 1rem;
 }
@@ -43,23 +43,31 @@
   }
 }
 
-input,
-select {
+.form-grid div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input, select {
   padding: 0.75rem;
   border-radius: 0.75rem;
   border: 1px solid #d1d5db;
   outline: none;
 }
 
-input:focus,
-select:focus {
+input:focus, select:focus {
   border-color: #2563eb;
 }
 
 .submit-btn {
   grid-column: 1 / -1;
   margin-top: 1.5rem;
-  padding: 0.9rem;
+  padding: 00.9rem;
   background: #1d4ed8;
   color: white;
   border: none;
