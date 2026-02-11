@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .input {
+    @apply w-full p-3 rounded-xl border border-gray-300 outline-none focus:border-blue-600;
+  }
+}
