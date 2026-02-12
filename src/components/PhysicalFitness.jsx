@@ -27,26 +27,34 @@ export default function PhysicalFitness() {
   };
 
   const ranks = [
-    "AVM",
-    "Air Commodore",
-    "Group Captain",
-    "Wing Commander",
-    "Squadron Leader",
-    "Flight Lieutenant",
-    "Flying Officer",
-    "Flight Sergeant",
-    "Corporal",
+    "Air Man",
+    "Air Woman",
     "Lance Corporal",
+    "Corporal",
+    "Sergeant",
+    "Flight Sergeant",
+    "Warrant Officer",
+    "Master Warrant Officer",
+    "Air Warrant Officer",
+    "Flying Officer",
+    "Flight Lieutenant",
+    "Squadron Leader",
+    "Wing Commander",
+    "Group Captain",
+    "Air Commodore",
+    "Air Vice Marshal",
+    "Vice Marshal",
+    "Air Chief Marshal",
+    "Marshal of the Air Force",
   ];
-  const units = ["Armament", "Bursary", "Flight Line", "Logistics", "Medical"];
-  const appointments = ["Commandant", "AOC", "RM", "Instructor"];
+ 
 
   return (
     <div className="page">
       <div className="form-container">
         <div className="header">
           <img src={airForce} alt="NAF Logo" />
-          <h1>NIGERIA AIR FORCE ANNUAL PHYSICAL FITNESS REQUEST FORM</h1>
+          <h1>NIGERIA AIR FORCE ANNUAL PHYSICAL FITNESS TEST INTERPRETATION FORM</h1>
         </div>
         <form onSubmit={handleSubmit} className="form-grid">
           <div>
@@ -55,7 +63,7 @@ export default function PhysicalFitness() {
           </div>
           <div>
             <label>Full Name:</label>
-            <input name="fullName" type="text" placeholder="Full Name" onChange={handleChange} required />
+            <input name="fullName" type="text" placeholder="Enter Name" onChange={handleChange} required />
           </div>
           <div>
             <label>Rank:</label>
@@ -72,12 +80,7 @@ export default function PhysicalFitness() {
           </div>
           <div>
             <label>Unit:</label>
-            <select name="unit" onChange={handleChange} required>
-              <option value="">Select Unit</option>
-              {units.map((u) => (
-                <option key={u}>{u}</option>
-              ))}
-            </select>
+            <input name="unit" type="text" placeholder="Enter Unit" onChange={handleChange} required />
           </div>
           <div>
             <label>Date:</label>
@@ -85,12 +88,7 @@ export default function PhysicalFitness() {
           </div>
           <div>
             <label>Appointment:</label>
-            <select name="appointment" onChange={handleChange} required>
-              <option value="">Select Appointment</option>
-              {appointments.map((a) => (
-                <option key={a}>{a}</option>
-              ))}
-            </select>
+            <input name="Enter Appointment" type="text" placeholder="Enter Appointment Name" onChange={handleChange} required />
           </div>
           <div>
             <label>Height (m):</label>
