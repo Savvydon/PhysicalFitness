@@ -1,11 +1,10 @@
+import { Routes, Route } from "react-router-dom";
 import PhysicalFitness from "./components/PhysicalFitness";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <PhysicalFitness />
-    </>
+    <Routes>
+      <Route path="/" element={<PhysicalFitness />} />
+    </Routes>
   );
 }
-
-export default App;
